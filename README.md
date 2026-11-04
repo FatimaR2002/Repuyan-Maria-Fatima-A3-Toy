@@ -1,5 +1,4 @@
-Project Name: Hoop to the Hoop
-
+Project Name: Dunkin' Layup's
 How to play:
 1. The game is played with a basketball and a hoop.
 2. The player controls the basketball using the WASD keys on the keyboard to move up, down, left and right 
