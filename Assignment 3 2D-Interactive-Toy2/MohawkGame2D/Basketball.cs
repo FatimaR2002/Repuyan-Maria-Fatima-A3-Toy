@@ -42,7 +42,7 @@ namespace MohawkGame2D
             {
                 input.Y = 1;
             }
-            position += input * 200f * Time.DeltaTime;
+            position += input * 250f * Time.DeltaTime;
 
             Draw.LineSize = 1;
             Draw.FillColor = BasketballBrown;
