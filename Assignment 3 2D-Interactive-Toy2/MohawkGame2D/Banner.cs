@@ -26,7 +26,7 @@ namespace MohawkGame2D
             //Banner 1 Symbol
             Draw.FillColor = Symbol;
             Draw.Triangle(new Vector2(0, 50), new Vector2(30, 110), new Vector2(0, 150));
-            Draw.Rectangle(new Vector2(0,170), new Vector2(20,20));
+            Draw.Rectangle(new Vector2(0, 170), new Vector2(20, 20));
             //Banner 1 Outline
             Draw.LineSize = 5;
             Draw.LineColor = BannerEdge;
@@ -50,7 +50,7 @@ namespace MohawkGame2D
             //Banner 2 Outline
             Draw.LineSize = 5;
             Draw.LineColor = BannerEdge;
-            Draw.PolyLine(new Vector2(70, 10), new Vector2(230, 10), new Vector2(230, 190), new Vector2(150, 260), new Vector2(70, 190),new Vector2(70, 10));
+            Draw.PolyLine(new Vector2(70, 10), new Vector2(230, 10), new Vector2(230, 190), new Vector2(150, 260), new Vector2(70, 190), new Vector2(70, 10));
 
             //Banner 3
             Draw.LineSize = 0;
@@ -82,7 +82,7 @@ namespace MohawkGame2D
             Draw.FillColor = Symbol;
             Draw.Triangle(new Vector2(800, 100), new Vector2(770, 150), new Vector2(800, 150));
             Draw.Circle(new Vector2(800, 65), 29);
-            Draw.Rectangle(new Vector2(780,170), new Vector2(20,20));
+            Draw.Rectangle(new Vector2(780, 170), new Vector2(20, 20));
             //Banner 4 Outline
             Draw.LineSize = 5;
             Draw.LineColor = BannerEdge;

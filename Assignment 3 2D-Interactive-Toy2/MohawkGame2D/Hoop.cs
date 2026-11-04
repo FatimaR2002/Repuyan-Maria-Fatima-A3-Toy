@@ -24,6 +24,7 @@ namespace MohawkGame2D
             Draw.Line(new Vector2(380, 300), new Vector2(360, 370));
             Draw.Line(new Vector2(420, 300), new Vector2(440, 370));
             Draw.Line(new Vector2(400, 330), new Vector2(370, 400));
+            Draw.Line(new Vector2(400, 330), new Vector2(370, 400));
             Draw.Line(new Vector2(400, 330), new Vector2(430, 400));
             Draw.Line(new Vector2(370, 400), new Vector2(360, 380));
             Draw.Line(new Vector2(430, 400), new Vector2(440, 380));

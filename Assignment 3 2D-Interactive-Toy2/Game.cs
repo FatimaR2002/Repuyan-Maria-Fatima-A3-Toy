@@ -19,7 +19,6 @@ namespace MohawkGame2D
         public string scoremessage = "You Scored!!";
         public Color GreenScreen = new Color(144, 238, 144, 100);
         public Color Tally = new Color("FCF5E5");
-        //public Font ScoreFont = 
         public Color scoremessagecolor = new Color("00FF00");
 
         //objects    
@@ -36,7 +35,7 @@ namespace MohawkGame2D
         {
             //Add the Window size and title name
             Window.SetSize(800, 600);
-            Window.SetTitle("Dunkin' Layups");
+            Window.SetTitle("Dunkin' Layup's");
             object1.Setup();
             object2.Setup();
             object3.Setup();
@@ -123,17 +122,7 @@ namespace MohawkGame2D
             ///
             //////////
 
-            //Function 1:
-            //Make the Tally Chart points only go up to 5 points, and make sure the player does not get multiple scores for one shot
-            for (int i = 0; i < score && score <= 5; i++)
-            {
-                Draw.LineSize = 1;
-                //X and Y coordinates, move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
-                int x = i * 43;
-                //Draw the tally point icon. Make it a brown basketball , and make it move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
-                Draw.FillColor = BasketballBrown;
-                Draw.Circle(new Vector2(70 + x, 460), 20);
-            }
+            TallyChart();
 
             /////////////
             ///
@@ -203,10 +192,23 @@ namespace MohawkGame2D
                 {
                     Text.Size = 40;
                     Text.Color = Color.Black;
-                    //Text.Font = Arial;
                     Text.Draw(scoremessage, new Vector2(500, 350));
 
                 }
+        }
+        public void TallyChart()
+        {
+            //Function 1:
+            //Make the Tally Chart points only go up to 5 points, and make sure the player does not get multiple scores for one shot
+            for (int i = 0; i < score && score <= 5; i++)
+            {
+                Draw.LineSize = 1;
+                //X and Y coordinates, move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
+                int x = i * 43;
+                //Draw the tally point icon. Make it a brown basketball , and make it move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
+                Draw.FillColor = BasketballBrown;
+                Draw.Circle(new Vector2(70 + x, 460), 20);
+            }
         }
     }
 }
