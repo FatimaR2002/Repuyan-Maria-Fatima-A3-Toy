@@ -36,7 +36,7 @@ namespace MohawkGame2D
         {
             //Add the Window size and title name
             Window.SetSize(800, 600);
-            Window.SetTitle("Hoop to the Hoop");
+            Window.SetTitle("Dunkin' Layups");
             object1.Setup();
             object2.Setup();
             object3.Setup();
