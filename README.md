@@ -6,4 +6,6 @@ How to play:
 4. The game resets when the player reaches a score of 5 points. And the tally chart gets reset to 0.  
 
 <i> Note: Assignment 3 2D-Interactive Toy2 is the COMPLETED assignment for this project. </i>
+
+
 <i> I have included the other Interactive Toy2 assignment in the project folder for reference. </i>
