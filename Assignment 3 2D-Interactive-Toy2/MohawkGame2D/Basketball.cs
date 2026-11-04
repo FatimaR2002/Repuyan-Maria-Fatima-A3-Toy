@@ -16,6 +16,7 @@ namespace MohawkGame2D
         public void Update()
         {
 
+            //Function
             Vector2 input = new Vector2(0, 0);
             if (Input.IsKeyboardKeyDown(KeyboardKey.A))
             {
@@ -42,17 +43,11 @@ namespace MohawkGame2D
             {
                 input.Y = 1;
             }
-            position += input * 250f * Time.DeltaTime;
+            position += input * 200f * Time.DeltaTime;
 
             Draw.LineSize = 1;
             Draw.FillColor = BasketballBrown;
-            Draw.Circle(position, 39);
+            Draw.Circle(position, 35);
         }
-
-        public void Functions()
-        {
-
-        }
-
     }
 }

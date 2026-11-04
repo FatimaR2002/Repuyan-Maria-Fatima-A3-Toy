@@ -12,7 +12,6 @@ namespace MohawkGame2D
 
         public void Setup()
         {
-
         }
 
         public void Update()
@@ -43,9 +42,11 @@ namespace MohawkGame2D
             Draw.Line(new Vector2(420, 370), new Vector2(430, 330));
             Draw.Line(new Vector2(370, 330), new Vector2(340, 300));
             Draw.Line(new Vector2(430, 330), new Vector2(460, 300));
+            Draw.Line(new Vector2(340, 300), new Vector2(350, 260));
+            Draw.Line(new Vector2(460, 300), new Vector2(450, 260));
 
             //HoopRim 
-            Draw.LineSize = 1;
+            Draw.LineSize = 1.8f;
             Draw.LineColor = Color.Black;
             Draw.FillColor = HoopRim;
             Draw.Rectangle(new Vector2(330, 260), new Vector2(140, 20));

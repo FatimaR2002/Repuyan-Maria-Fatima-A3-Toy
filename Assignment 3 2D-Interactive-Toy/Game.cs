@@ -23,6 +23,8 @@ namespace MohawkGame2D
         Basketball object2 = new Basketball();
         Banner object3 = new Banner();
 
+        int score = 0;
+
         public void Setup()
         {
             //Add title and Window Size
@@ -89,7 +91,7 @@ namespace MohawkGame2D
             object2.Update();
 
 
-            //Draw the Wires attachted to the Basketball Hoop
+            //Draw the Basketball Hoop
             {
                 float y = 0;
                 Draw.LineSize = 7;
@@ -142,7 +144,7 @@ namespace MohawkGame2D
             {
                 Draw.FillColor = Shadow;
                 //Y coordinate 
-                int y = i - 30;
+                int y = i * 30;
                 //Make the Quad move down the y-coordinate every 30 pixels.
                 Draw.Quad(new Vector2(y + 30, 20), new Vector2(y - 870, 600), new Vector2(y - 620, 600), new Vector2(y + 30, 90));
             }

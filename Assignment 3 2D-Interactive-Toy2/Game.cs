@@ -1,5 +1,6 @@
 ﻿// Include the namespaces (code libraries) you need below.
 using System;
+using System.Linq.Expressions;
 using System.Numerics;
 
 namespace MohawkGame2D
@@ -8,15 +9,22 @@ namespace MohawkGame2D
     public class Game
     {
         //Variables 
-        public Color bg = new Color("EDEADE");
-        public Color BGstrip = new Color(65, 105, 225);
-        public Color BGCushion = new Color(44, 72, 148);
+        public Color bg = new Color("D3D3D3");
+        public Color BasketballBrown = new Color("B54213");
+        public Color HoopRim = new Color("EE6730");
+        public Color BGstrip = new Color("814141");
+        public Color BGCushion = new Color("A52A2A");
         public Color BackboardRed = new Color("B23A32");
         public Color Shadow = new Color(255, 229, 180, 30);
+        public string scoremessage = "You Scored!!";
+        public Color GreenScreen = new Color(144, 238, 144, 100);
+        public Color Tally = new Color("FCF5E5");
+        //public Font ScoreFont = 
+        public Color scoremessagecolor = new Color("00FF00");
 
         //objects    
-        Hoop object2 = new Hoop();
         Basketball object1 = new Basketball();
+        Hoop object2 = new Hoop();
         Banner object3 = new Banner();
         int score = 0;
         bool justscored = false;
@@ -53,6 +61,8 @@ namespace MohawkGame2D
 
             //////////////
             ///
+            /////////////
+
             //Backboard for the Basketball Hoop    
             {
                 //Draw the wires attachted to the Basketball Hoop
@@ -73,40 +83,89 @@ namespace MohawkGame2D
 
                 //Draw the Backboard 
                 //Draw the first rectangle, make it white
-                Draw.LineSize = 2f;
+                Draw.LineSize = 1f;
                 Draw.LineColor = Color.Black;
                 Draw.FillColor = Color.White;
                 Draw.Rectangle(new Vector2(250, 100), new Vector2(300, 200));
                 //Draw the second rectangle, make it red
-                Draw.LineSize = 2f;
+                Draw.LineSize = 1f;
                 Draw.LineColor = Color.Black;
                 Draw.FillColor = BackboardRed;
                 Draw.Rectangle(new Vector2(270, 120), new Vector2(260, 160));
                 //Third rectangle, make it white
-                Draw.LineSize = 2f;
+                Draw.LineSize = 1f;
                 Draw.LineColor = Color.Black;
                 Draw.FillColor = Color.White;
                 Draw.Rectangle(new Vector2(280, 130), new Vector2(240, 140));
                 //Fourth rectangle, make it red
-                Draw.LineSize = 2f;
+                Draw.LineSize = 1f;
                 Draw.LineColor = Color.Black;
                 Draw.FillColor = BackboardRed;
                 Draw.Rectangle(new Vector2(340, 190), new Vector2(120, 80));
                 //fifth rectangle, make it white
-                Draw.LineSize = 2f;
+                Draw.LineSize = 1f;
                 Draw.LineColor = Color.Black;
                 Draw.FillColor = Color.White;
                 Draw.Rectangle(new Vector2(350, 200), new Vector2(100, 60));
             }
+
             ////////////////
-            ////
-            ///Rectangle for Tally Chart 
-            Draw.LineSize = 3;
-            Draw.FillColor = Color.OffWhite;
-            Draw.Rectangle(new Vector2(40, 410), new Vector2(210, 120));
+            ///
             ///////////////
-            ////
-            ///Loop 1: Window Shadows 
+
+            //Loop 1: Tally Chart
+            ///Rectangle for Tally Chart 
+            Draw.LineSize = 1;
+            Draw.FillColor = Tally;
+            Draw.Rectangle(new Vector2(40, 410), new Vector2(230, 90));
+
+            ///////////
+            ///
+            //////////
+
+            //Function 1:
+            //Make the Tally Chart points only go up to 5 points, and make sure the player does not get multiple scores for one shot
+            for (int i = 0; i < score && score <= 5; i++)
+            {
+                Draw.LineSize = 1;
+                //X and Y coordinates, move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
+                int x = i * 43;
+                //Draw the tally point icon. Make it a brown basketball , and make it move every X-coordinate 20 pixels, each time the player gets the basketball into the hoop
+                Draw.FillColor = BasketballBrown;
+                Draw.Circle(new Vector2(70 + x, 460), 20);
+            }
+
+            /////////////
+            ///
+            ////////////
+
+            //Update for Class 3
+            object3.Update();
+
+            ///////////
+            ///
+            //////////
+
+            //Function 2:
+            //The player scores a point when the basketball goes through the bottom of the hoop,
+            if (object1.position.X > 350 && object1.position.X < 500)
+            {
+                if (object1.position.Y > 410 && object1.position.Y < 430 && justscored == false)
+                {
+                    score++;
+                    justscored = true;
+                }
+            }
+
+            //reset the net after the player scores more than 5 points and reset the score to 0
+            if (object1.position.X > 500) justscored = false;
+            if (score > 5)
+            {
+                score = 0;
+                justscored = false;
+            }
+
+            ///Loop 2: Window Shadows 
             for (int i = 0; i < 4; i++)
             {
                 Draw.LineSize = 0;
@@ -116,42 +175,39 @@ namespace MohawkGame2D
                 //Draw a Quad that moves down y-axis every 30 pixels 
                 Draw.Quad(new Vector2(0, y), new Vector2(900, y + 670), new Vector2(650, y + 670), new Vector2(0, y + 60));
             }
-            ///////////////
-            ////
-            ///Loop 2: Tally Chart
-            for (int i = 0; i < score; i++)
 
-            {
-                Draw.LineSize = 3;
-                //X and Y coordinates, move every 30 pixels, each time the player gets the basketball into the hoop
-                int x = i * 20;
-                //Draw the line
-                Draw.Line(new Vector2(x + 100, 430), new Vector2(x + 50, 510));
-            }
             /////////////
             ///
-            //Classes Update 
+            ///////////
+
+            //Classes Uodate for object1 and object2
             object1.Update();
             object2.Update();
-            object3.Update();
 
-            ///////
-            ///
-            //Get a score if the basketball goes through the net
-            if (object1.position.X > 380 && object1.position.X < 420)
-            {
-                if (object1.position.Y > 410 && object1.position.Y < 420 && justscored == false)
+            ////////////
+            ////
+            ////////////
+
+            ///Function 3:
+            ///if the player gets a point, change the background to green to indicate that they've gotten a point, and reset it back to original colour
+            if (object1.position.Y > 400 && object1.position.Y < 570)
+                if (object1.position.X > 350 && object1.position.X < 460)
                 {
-                    score++;
-                    justscored = true;
+                    Window.ClearBackground(GreenScreen);
                 }
-            }
-            //reset the net after the player scores 
-            if (object1.position.X > 500) justscored = false;
 
+            //Function 4:
+            // add a string text when you get a score, saying "You Scored!!!"
+            if (object1.position.Y > 400 && object1.position.Y < 570)
+                if (object1.position.X > 350 && object1.position.X < 460)
+                {
+                    Text.Size = 40;
+                    Text.Color = Color.Black;
+                    //Text.Font = Arial;
+                    Text.Draw(scoremessage, new Vector2(500, 350));
 
+                }
         }
-
     }
 }
 
