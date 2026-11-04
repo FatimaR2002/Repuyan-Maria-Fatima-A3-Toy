@@ -17,7 +17,7 @@ namespace MohawkGame2D
         public Color BackboardRed = new Color("B23A32");
         public Color Shadow = new Color(255, 229, 180, 30);
         public string scoremessage = "You Scored!!";
-        public Color GreenScreen = new Color(144, 238, 144, 100);
+        public Color Screen = new Color(144, 238, 144, 50);
         public Color Tally = new Color("FCF5E5");
         public Color scoremessagecolor = new Color("00FF00");
 
@@ -48,7 +48,6 @@ namespace MohawkGame2D
             //Draw the "Color bg" for the background 
             Window.ClearBackground(bg);
 
-
             //Draw the "BG Strip" at the bottom of the background 
             Draw.LineSize = 0;
             Draw.FillColor = BGstrip;
@@ -58,9 +57,6 @@ namespace MohawkGame2D
             Draw.FillColor = BGCushion;
             Draw.Rectangle(new Vector2(0, 480), new Vector2(800, 130));
 
-            //////////////
-            ///
-            /////////////
 
             //Backboard for the Basketball Hoop    
             {
@@ -108,51 +104,21 @@ namespace MohawkGame2D
                 Draw.Rectangle(new Vector2(350, 200), new Vector2(100, 60));
             }
 
-            ////////////////
-            ///
-            ///////////////
-
             //Loop 1: Tally Chart
             ///Rectangle for Tally Chart 
             Draw.LineSize = 1;
             Draw.FillColor = Tally;
             Draw.Rectangle(new Vector2(40, 410), new Vector2(230, 90));
 
-            ///////////
-            ///
-            //////////
-
+            //Functions
             TallyChart();
-
-            /////////////
-            ///
-            ////////////
+            YouScored();
+            GreenScreen();
+            ScoredPoints();
+            NetReset();
 
             //Update for Class 3
             object3.Update();
-
-            ///////////
-            ///
-            //////////
-
-            //Function 2:
-            //The player scores a point when the basketball goes through the bottom of the hoop,
-            if (object1.position.X > 350 && object1.position.X < 500)
-            {
-                if (object1.position.Y > 410 && object1.position.Y < 430 && justscored == false)
-                {
-                    score++;
-                    justscored = true;
-                }
-            }
-
-            //reset the net after the player scores more than 5 points and reset the score to 0
-            if (object1.position.X > 500) justscored = false;
-            if (score > 5)
-            {
-                score = 0;
-                justscored = false;
-            }
 
             ///Loop 2: Window Shadows 
             for (int i = 0; i < 4; i++)
@@ -164,38 +130,11 @@ namespace MohawkGame2D
                 //Draw a Quad that moves down y-axis every 30 pixels 
                 Draw.Quad(new Vector2(0, y), new Vector2(900, y + 670), new Vector2(650, y + 670), new Vector2(0, y + 60));
             }
-
-            /////////////
-            ///
-            ///////////
-
-            //Classes Uodate for object1 and object2
+            //Classes Update for object1 and object2
             object1.Update();
             object2.Update();
-
-            ////////////
-            ////
-            ////////////
-
-            ///Function 3:
-            ///if the player gets a point, change the background to green to indicate that they've gotten a point, and reset it back to original colour
-            if (object1.position.Y > 400 && object1.position.Y < 570)
-                if (object1.position.X > 350 && object1.position.X < 460)
-                {
-                    Window.ClearBackground(GreenScreen);
-                }
-
-            //Function 4:
-            // add a string text when you get a score, saying "You Scored!!!"
-            if (object1.position.Y > 400 && object1.position.Y < 570)
-                if (object1.position.X > 350 && object1.position.X < 460)
-                {
-                    Text.Size = 40;
-                    Text.Color = Color.Black;
-                    Text.Draw(scoremessage, new Vector2(500, 350));
-
-                }
         }
+
         public void TallyChart()
         {
             //Function 1:
@@ -209,6 +148,56 @@ namespace MohawkGame2D
                 Draw.FillColor = BasketballBrown;
                 Draw.Circle(new Vector2(70 + x, 460), 20);
             }
+        }
+        public void ScoredPoints()
+        {
+            //Function 2:
+            //The player scores a point when the basketball goes through the bottom of the hoop,
+            if (object1.position.X > 350 && object1.position.X < 500)
+            {
+                if (object1.position.Y > 410 && object1.position.Y < 430 && justscored == false)
+                {
+                    score++;
+                    justscored = true;
+                }
+            }
+        }
+
+        public void NetReset()
+        {
+            //Function 3:
+            //reset the net after the player scores more than 5 points and reset the score to 0
+            if (object1.position.X > 500) justscored = false;
+            if (score > 5)
+            {
+                score = 0;
+                justscored = false;
+            }
+        }
+
+        public void GreenScreen()
+        {
+            ///Function 4:
+            ///if the player gets a point, change the background to green to indicate that they've gotten a point, and reset it back to original colour
+            if (object1.position.Y > 400 && object1.position.Y < 570)
+                if (object1.position.X > 350 && object1.position.X < 460)
+                {
+                    Window.ClearBackground(Screen);
+                }
+        }
+
+        public void YouScored()
+        {
+            //Function 5:
+            // add a string text when you get a score, saying "You Scored!!!"
+            if (object1.position.Y > 400 && object1.position.Y < 570)
+                if (object1.position.X > 350 && object1.position.X < 460)
+                {
+                    Text.Size = 40;
+                    Text.Color = Color.Black;
+                    Text.Draw(scoremessage, new Vector2(500, 350));
+
+                }
         }
     }
 }
